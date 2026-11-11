@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>出路指南 2026 · 文憑試放榜前後全攻略（互動版）</title>
+<meta name="description" content="以學友社《出路指南2026》第一、二冊整理而成的互動指南：出路地圖、聯招計分器、彈性收生、副學位、應用教育文憑、留學漫遊與職場情報。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E7C66'/%3E%3Ctext x='16' y='23' font-size='19' font-family='serif' font-weight='700' fill='white' text-anchor='middle'%3E%E5%87%BA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<header class="topbar">
+  <a class="brand" href="#top">
+    <span class="brand-mark">出</span>
+    <span class="brand-text"><b>出路指南</b><i>2026</i></span>
+  </a>
+  <nav class="nav" id="nav">
+    <a href="#map">出路地圖</a>
+    <a href="#timeline">時間軸</a>
+    <a href="#jupas">聯招</a>
+    <a href="#beyond">聯招以外</a>
+    <a href="#abroad">留學</a>
+    <a href="#work">職場</a>
+    <a href="#prepare">放榜準備</a>
+  </nav>
+  <div class="topbar-actions">
+    <button class="me-btn" id="meBtn" aria-expanded="false">
+      <span class="me-dot" id="meDot"></span><span id="meLabel">輸入我的成績</span>
+    </button>
+    <button class="icon-btn" id="searchBtn" title="搜尋 (Ctrl/⌘ + K)" aria-label="搜尋">⌘K</button>
+  </div>
+</header>
+
+<!-- ============ 我的成績 PANEL ============ -->
+<aside class="me-panel" id="mePanel" hidden aria-label="我的成績">
+  <div class="me-head">
+    <h3>我的成績</h3>
+    <button class="x" id="meClose" aria-label="關閉">✕</button>
+  </div>
+  <p class="me-hint">輸入等級，整份指南會即時對應你的位置：合資格與否、五科分數、彈性收生是否適用。資料只存在你這部裝置。</p>
+  <div class="me-grid" id="meGrid">
+    <label>中文 <select data-sub="chi" class="grade"></select></label>
+    <label>英文 <select data-sub="eng" class="grade"></select></label>
+    <label>數學 <select data-sub="math" class="grade"></select></label>
+    <label>公民與社會發展 <select data-sub="csd" class="grade csd"></select></label>
+    <label>選修一 <select data-sub="e1" class="grade"></select></label>
+    <label>選修二 <select data-sub="e2" class="grade"></select></label>
+    <label>選修三 <select data-sub="e3" class="grade"></select></label>
+    <label>M1 / M2 <select data-sub="m12" class="grade"></select></label>
+  </div>
+  <div class="me-result" id="meResult"></div>
+  <div class="me-foot">
+    <button class="btn ghost" id="meClear">清除</button>
+    <a class="btn solid" href="#jupas">看我的分數 →</a>
+  </div>
+</aside>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <svg viewBox="0 0 1200 620" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#0E7C66" stop-opacity=".16"/>
+          <stop offset="1" stop-color="#0F1D24" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="620" fill="url(#g1)"/>
+      <g stroke="#0E7C66" stroke-opacity=".18" fill="none">
+        <path d="M-20 470 C 180 470, 220 340, 400 340 S 640 470, 820 470 S 1060 340, 1240 340"/>
+        <path d="M-20 520 C 180 520, 220 400, 400 400 S 640 520, 820 520 S 1060 400, 1240 400"/>
+        <path d="M-20 570 C 180 570, 220 460, 400 460 S 640 570, 820 570 S 1060 460, 1240 460"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">學友社《出路指南 2026》· 第一冊 + 第二冊 · 互動整理</p>
+      <h1>出路<span class="thin">指南</span> <em>2026</em></h1>
+      <p class="lead">由放榜前的心理準備，到聯招改選的每一步；由資助學位、自資學士、副學位、應用教育文憑，到留學與職場。<br class="br-lg">兩冊共 342 頁的資料，整理成一條你走得完的路。</p>
+      <div class="hero-cta">
+        <button class="btn solid lg" id="heroMe">輸入我的成績，看配對</button>
+        <a class="btn ghost lg" href="#map">先看出路地圖</a>
+      </div>
+      <p class="hero-note">所有數字、日期、費用均照原書抄錄；每節附原書頁碼，方便對照。</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b>46,000</b><span>2026 日校考生</span></div>
+      <div class="stat"><b>24,100</b><span>學士學額</span></div>
+      <div class="stat"><b>28,600</b><span>副學位學額</span></div>
+      <div class="stat"><b>5,000</b><span>應用教育文憑學額</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 出路地圖 ============ -->
+<section class="sec" id="map">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">01 · 全局</p>
+      <h2>四層門檻，十七條路線</h2>
+      <p class="dek">先看自己在哪一層，再看那一層有甚麼選擇、有多少學額。<span class="src">第一冊 p.20–21</span></p>
+    </div>
+
+    <div class="map-legend">
+      <span><i class="dot jade"></i>資助（UGC / 政府）</span>
+      <span><i class="dot teal"></i>SSSDP 資助</span>
+      <span><i class="dot amber"></i>自資</span>
+      <span><i class="dot coral"></i>非學位 / 就業</span>
+    </div>
+
+    <div class="tiers" id="tiers"></div>
+
+    <div class="map-foot">
+      <div class="chart-card">
+        <h4>學額分佈（2026）</h4>
+        <div id="quotaChart" class="bars"></div>
+        <p class="fine">數字包括 SSSDP 學額；資料來源：教育局、相關院校及機構（2026 年 6 月修訂），第一冊 p.18。</p>
+      </div>
+      <div class="chart-card">
+        <h4>你的成績，大約在哪個位置</h4>
+        <div id="gradeMatch" class="match"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 時間軸 ============ -->
+<section class="sec alt" id="timeline">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">02 · 流程</p>
+      <h2>2026 放榜全流程</h2>
+      <p class="dek">由 7 月 10 日校長推薦結果，到 8 月 27 日列印取錄結果。每一步都有死線，錯過就是錯過。<span class="src">第一冊 p.37、p.26</span></p>
+    </div>
+
+    <div class="tl-tools">
+      <div class="seg" id="tlFilter">
+        <button class="on" data-f="all">全部</button>
+        <button data-f="jupas">聯招</button>
+        <button data-f="dse">考評局</button>
+        <button data-f="other">其他</button>
+      </div>
+      <p class="fine">2026 年度流程已完整走過；2027 年度日期待考評局及聯招處公布，節奏相若。</p>
+    </div>
+
+    <ol class="timeline" id="timelineList"></ol>
+
+    <div class="two-col">
+      <div class="panel">
+        <h4>覆核成績：5 日內，最多 4 科</h4>
+        <ul class="ticks" id="reviewList"></ul>
+        <p class="fine">覆核結果 8 月 12 日公布；同日下午起可要求聯招按覆核成績重新考慮。<span class="src">p.26</span></p>
+      </div>
+      <div class="panel">
+        <h4>覆核真的會加分嗎</h4>
+        <div id="reviewChart" class="mini-chart"></div>
+        <p class="fine">2024／2025 年積分覆核與重閱答卷統計；升級比率約 1–3%。<span class="src">p.27</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 聯招 ============ -->
+<section class="sec" id="jupas">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">03 · 聯招</p>
+      <h2>分數是怎樣算出來的</h2>
+      <p class="dek">同一份成績表，在九所院校可以算出不同分數——因為換算表不同、計最佳五科還是六科不同、加權也不同。<span class="src">第一冊 p.47–49</span></p>
+    </div>
+
+    <div class="calc">
+      <div class="calc-input">
+        <h4>輸入五科成績</h4>
+        <p class="fine">核心三科 + 兩個選修；公民科只計「達標」，不計分。留空即不作計算。</p>
+        <div class="calc-grid" id="calcGrid"></div>
+        <div class="calc-total">
+          <span>最佳五科（5** = 7 標準換算）</span>
+          <b id="calcRaw">—</b>
+        </div>
+        <div class="calc-bars" id="calcBars"></div>
+        <p class="fine warn">示範計算：只計最佳五科、未計個別課程加權。港大、中大、科大、理大、城大把 5** 換算為 8.5 分，故上表分數可高於此數。實際取錄以院校公布為準。</p>
+      </div>
+      <div class="calc-out">
+        <table class="score-table" id="scoreTable">
+          <thead><tr><th>院校</th><th>換算</th><th class="num">最佳五科</th><th>入學門檻</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-num">5** = 8.5 <span>或</span> 7</div>
+      <p>港大、中大、科大、理大、城大把 5** 換算為 8.5 分；浸大、嶺大、教大、都大及大部分自資院校換算為 7 分。同一張成績表，最高分與最低分可以相差 7.5 分。計分前先確認院校的換算表。</p>
+    </div>
+
+    <h3 class="sub">十六所院校的計分法</h3>
+    <div class="table-scroll">
+      <table class="data-table" id="scoringTable">
+        <thead><tr><th>院校</th><th>計分基礎</th><th>5 / 5* / 5**</th><th>加權與備註</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="fine">九所聯招院校（八所教資會資助 + 都大）及七所自資院校；資料照錄第一冊 p.47–49，「—」表示原書未就該項作說明。</p>
+
+    <h3 class="sub">差一級，還有沒有機會：彈性收生</h3>
+    <p class="dek tight">核心科目未達 332A，不代表一定出局。十一所院校各有條件，共同點是：幾乎都要求 Band A、面試，而且分數要夠高。</p>
+    <div class="flex-grid" id="flexGrid"></div>
+    <p class="fine">資料照錄第一冊 p.50–51。條件以院校最終公布為準。</p>
+
+    <div class="two-col">
+      <div class="panel">
+        <h4>Band A 決定八成學位</h4>
+        <div class="big-stat"><b>83.19%</b><span>去年正式遴選取錄資格來自 Band A（首三志願）</span></div>
+        <div class="split-bar"><i style="width:83.19%"></i><i style="width:9.68%"></i></div>
+        <p class="fine">Band B 佔 9.68%。其餘組別合共不足 7%。<span class="src">p.41</span></p>
+      </div>
+      <div class="panel">
+        <h4>重考：大部分院校接受合計</h4>
+        <p>所有院校均容許以該科最佳成績計算。港大個別課程會略為扣分、中大個別課程可能調整，其餘院校不會。</p>
+        <ul class="ticks compact">
+          <li>科大、理大、浸大、城大：通識／公民科不計分</li>
+          <li>理大、城大：數學延伸 1 及 2 只取最佳一科</li>
+          <li>教大：通識 2 級可代替公民科，若屬最佳五科可計分</li>
+        </ul>
+        <p class="fine"><span class="src">p.52</span></p>
+      </div>
+    </div>
+
+    <h3 class="sub">面試：誰一定要見你</h3>
+    <p class="dek tight">大部分院校只邀請 Band A 申請人面試；個別課程缺席面試即不再考慮。以下是六所院校的安排要點。<span class="src">第一冊 p.108–112</span></p>
+    <div class="table-scroll">
+      <table class="data-table" id="interviewTable">
+        <thead><tr><th>院校</th><th>誰獲邀／一定要見</th><th>形式與語言</th><th>時間</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="fine">只列出設有面試的課程；其餘課程大多不設面試。最新安排以院校公布為準。</p>
+
+    <h3 class="sub">聯招以外的資助：SSSDP 與應用學位</h3>
+    <div class="mini-grid" id="sssdpCards"></div>
+
+    <h3 class="sub">2026 年課程動向</h3>
+    <div class="move-grid" id="moveGrid"></div>
+  </div>
+</section>
+
+<!-- ============ 聯招以外 ============ -->
+<section class="sec alt" id="beyond">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">04 · 聯招以外</p>
+      <h2>不經聯招，一樣有學位</h2>
+      <p class="dek">資助學位以外，還有自資學士、副學位、應用教育文憑，以及資歷架構上的其他證書與文憑。這一段是「Plan B」的全部選項。</p>
+    </div>
+
+    <div class="tabs" id="beyondTabs">
+      <button class="on" data-tab="self">自資學士 · NMTSS</button>
+      <button data-tab="sub">副學位</button>
+      <button data-tab="dae">應用教育文憑</button>
+      <button data-tab="qf">其他進修 · 資歷架構</button>
+    </div>
+
+    <!-- 自資學士 -->
+    <div class="tab-panel on" data-panel="self">
+      <div class="two-col">
+        <div class="panel accent">
+          <h4>NMTSS 免入息審查資助</h4>
+          <p class="big-num">$35,120<span>/ 年（2026/27）</span></p>
+          <p>合資格的第一年學士學位及銜接學位課程本地學生，<b>不論是否考獲 332A</b>，均可獲資助。</p>
+          <ul class="ticks compact">
+            <li>非本地生、已持學士或以上學位者不合資格</li>
+            <li>正修讀資助學士／副學位（UGC、演藝、SSSDP 資助學額）不合資格</li>
+            <li>兼讀制不合資格；只涵蓋正常修業期</li>
+            <li>可轉換課程一次，超過一次即失去資格</li>
+          </ul>
+          <p class="fine">第一冊 p.133</p>
+        </div>
+        <div class="panel">
+          <h4>放榜後的關鍵日期</h4>
+          <ul class="date-list" id="nonJupasDates"></ul>
+        </div>
+      </div>
+
+      <h3 class="sub">自資學士課程的費用與退款</h3>
+      <div class="two-col">
+        <div class="panel">
+          <h4>留位費與報名費</h4>
+          <div id="feeTable"></div>
+        </div>
+        <div class="panel">
+          <h4>退還留位費的安排</h4>
+          <p>若其後獲聯招（教資會學士／SSSDP 學士／教資會副學位）取錄，可於指定日期前申請退還，院校可扣行政費。</p>
+          <div class="table-scroll short">
+            <table class="data-table slim" id="refundTable">
+              <thead><tr><th>院校</th><th class="num">留位費</th><th class="num">行政費</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="fine">第一冊 p.136；截止日期：正式遴選 8 月 7 日、覆核 8 月 24 日、補選 8 月 27 日（多數院校中午 12 時）。</p>
+        </div>
+      </div>
+
+      <h3 class="sub">二十三所院校</h3>
+      <div class="inst-grid" id="instGrid"></div>
+    </div>
+
+    <!-- 副學位 -->
+    <div class="tab-panel" data-panel="sub">
+      <div class="two-col">
+        <div class="panel">
+          <h4>副學士 vs 高級文憑</h4>
+          <div class="vs">
+            <div>
+              <h5>副學士</h5>
+              <p>涵蓋較多通識科目（語文、資訊科技、通識等），通識性質內容佔至少六成。</p>
+            </div>
+            <div>
+              <h5>高級文憑</h5>
+              <p>較注重專業知識（專修科目、專業訓練、職業技能等），專門性質內容佔至少六成。</p>
+            </div>
+          </div>
+          <p class="fine">2026/27 學年：經本地評審的副學士課程約 99 個、高級文憑約 257 個。<span class="src">第二冊 p.3</span></p>
+        </div>
+        <div class="panel">
+          <h4>最低入學要求</h4>
+          <ul class="ticks compact">
+            <li>文憑試五科（包括中英文）達第 2 級</li>
+            <li>大部分院校接受最多兩科應用學習科目成績達「達標」等同第 2 級</li>
+            <li>或具備可接受的其他同等學歷（本港或境外非本地學歷、其他同等學歷或經驗）</li>
+            <li>修畢應用教育文憑者，獲自資高等教育聯盟成員院校接納為符合副學位入學資格</li>
+          </ul>
+          <p class="fine">報名：E-APP 首輪已截止，次輪 2026 年 7 月 6 日截止；大部分院校放榜後仍設獨立招生。<span class="src">第二冊 p.3</span></p>
+        </div>
+      </div>
+
+      <div class="stat-row" id="subStats"></div>
+
+      <h3 class="sub">SSSDP 副學位：32 個課程，2,131 個學額</h3>
+      <div class="table-scroll">
+        <table class="data-table" id="subSssdpTable">
+          <thead><tr><th>院校</th><th>課程</th><th class="num">學額</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="fine">資助金額（2026/27）：非實驗室為本課程每年 $23,390；實驗室為本課程每年 $40,730。第二冊 p.5。</p>
+
+      <h3 class="sub">副學位計分與去年成績</h3>
+      <div class="two-col">
+        <div class="panel">
+          <h4>各校計分方法</h4>
+          <div class="table-scroll short">
+            <table class="data-table slim" id="subScoringTable">
+              <thead><tr><th>院校</th><th>核心科目</th><th>公民科</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel">
+          <h4>2025 年新生入學成績（樣本）</h4>
+          <div class="table-scroll short">
+            <table class="data-table slim" id="subScoreTable">
+              <thead><tr><th>課程</th><th class="num">分數</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="fine">第二冊 p.32；原書以建築及城市規劃範疇作示例。</p>
+        </div>
+      </div>
+
+      <div class="callout slim">
+        <div class="callout-num">升學銜接</div>
+        <p>2026/27 學年教資會資助全日制高年級學士學位課程，高年級學生核准取錄人數共 <b>5,000</b> 名，其中理大 1,750 個最多。副學位畢業生可報讀本地四年制學位第三年，或英國三年制學位第二年。</p>
+      </div>
+    </div>
+
+    <!-- DAE -->
+    <div class="tab-panel" data-panel="dae">
+      <div class="two-col">
+        <div class="panel">
+          <h4>應用教育文憑（DAE）是甚麼</h4>
+          <ul class="spec">
+            <li><span>總學時</span><b>600 小時</b></li>
+            <li><span>修讀期</span><b>全日制 1 年 / 兼讀 2 年</b></li>
+            <li><span>資歷級別</span><b>資歷架構第 3 級</b></li>
+            <li><span>同等學歷</span><b>文憑試五科第 2 級（包括中英）</b></li>
+            <li><span>入學要求</span><b>完成中六，或年滿 21 歲香港居民</b></li>
+            <li><span>2026/27 學費</span><b>$38,660 – $44,680</b></li>
+          </ul>
+          <p class="fine">出席率達 80% 且評核及格，可獲發還三成學費；通過入息審查可獲全額或半額發還。第二冊 p.64。</p>
+        </div>
+        <div class="panel">
+          <h4>三種課程組合</h4>
+          <div class="struct" id="daeStruct"></div>
+          <p class="fine">必修：中國語文、英國語文、數學。選修群組 = 三個選修科目。補充科目：生涯規劃、數碼公民、人際傳意與個人發展、延伸數學、科技創新技能。</p>
+        </div>
+      </div>
+
+      <h3 class="sub">六所院校的學費</h3>
+      <div class="chart-card wide">
+        <div id="daeChart" class="bars"></div>
+        <p class="fine">2026/27 年度全日制全年學費；第二冊 p.64–70。</p>
+      </div>
+
+      <h3 class="sub">院校選擇</h3>
+      <div class="inst-grid" id="daeGrid"></div>
+
+      <div class="callout slim">
+        <div class="callout-num">7 月 13 日 16:00</div>
+        <p>DAE 統一平台第一階段申請截止，7 月 14 日上午 9 時公布結果，同日起第二階段開始。報名費 $200。放榜後仍可直接向院校申請。</p>
+      </div>
+    </div>
+
+    <!-- 其他進修 -->
+    <div class="tab-panel" data-panel="qf">
+      <div class="two-col">
+        <div class="panel">
+          <h4>資歷架構：七級</h4>
+          <div class="qf" id="qfList"></div>
+        </div>
+        <div class="panel">
+          <h4>非本地課程：四個要點</h4>
+          <ul class="ticks" id="nonlocalList"></ul>
+          <p class="fine">第二冊 p.81–82。報讀前應確認課程已載入資歷名冊，並留意主辦機構的認可狀況。</p>
+        </div>
+      </div>
+      <h3 class="sub">經評審的全日制非本地學士課程</h3>
+      <div class="table-scroll">
+        <table class="data-table" id="nonlocalTable">
+          <thead><tr><th>院校</th><th>頒授機構</th><th>課程</th><th class="num">年制</th><th class="num">每年學費</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 留學 ============ -->
+<section class="sec" id="abroad">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">05 · 留學漫遊</p>
+      <h2>十五個目的地</h2>
+      <p class="dek">學費、生活費、語言門檻、申請截止——把十五個地區放在同一把尺上比較。<span class="src">第二冊 p.88–108</span></p>
+    </div>
+
+    <div class="filter-row">
+      <div class="seg" id="abroadFilter">
+        <button class="on" data-f="all">全部</button>
+        <button data-f="zh">中文授課</button>
+        <button data-f="en">英語授課</button>
+        <button data-f="near">鄰近地區</button>
+        <button data-f="low">學費較低</button>
+      </div>
+      <input type="search" id="abroadSearch" placeholder="搜尋地區、學制、語言…" aria-label="搜尋留學目的地">
+    </div>
+
+    <div class="dest-grid" id="destGrid"></div>
+
+    <div class="callout slim">
+      <div class="callout-num">47.1%</div>
+      <p>2025 年中六畢業生往外地升學的目的地中，內地佔 47.1%，英國 18%。往內地升學可經「文憑試收生計劃」或「港澳臺僑聯招試」。<span class="src">第二冊 p.89</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 職場 ============ -->
+<section class="sec alt" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">06 · 職場情報</p>
+      <h2>不升學，也可以是選擇</h2>
+      <p class="dek">八個熱門行業的入職門檻與薪酬，二十個培訓與見習計劃的津貼與對象。<span class="src">第二冊 p.113–142</span></p>
+    </div>
+
+    <h3 class="sub first">八個熱門行業</h3>
+    <div class="ind-list" id="indList"></div>
+
+    <h3 class="sub">培訓、學徒與見習計劃</h3>
+    <div class="filter-row">
+      <input type="search" id="schemeSearch" placeholder="搜尋計劃名稱、對象、津貼…" aria-label="搜尋培訓計劃">
+      <span class="count" id="schemeCount"></span>
+    </div>
+    <div class="scheme-grid" id="schemeGrid"></div>
+    <p class="fine">津貼與薪金照錄第二冊 p.115–127；數字以計劃公布為準。</p>
+  </div>
+</section>
+
+<!-- ============ 放榜準備 ============ -->
+<section class="sec" id="prepare">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">07 · 放榜日</p>
+      <h2>清單、熱線、與一個 Plan B</h2>
+      <p class="dek">放榜前一晚要放進袋的東西、當日要打的電話、以及無論結果如何都用得着的一句話。<span class="src">第一冊 p.22–25</span></p>
+    </div>
+
+    <div class="prep">
+      <div class="panel">
+        <div class="prep-head">
+          <h4>放榜物資備忘錄</h4>
+          <span class="prep-count" id="prepCount">0 / 0</span>
+        </div>
+        <div class="prep-bar"><i id="prepBar"></i></div>
+        <ul class="checklist" id="checklist"></ul>
+        <p class="fine">勾選狀態會存在你這部裝置。</p>
+      </div>
+      <div class="panel">
+        <h4>輔導熱線</h4>
+        <ul class="hotline" id="hotlineList"></ul>
+        <div class="quote">
+          <p>「每個人都充滿着無限可能，只等着你去開發和探索。」</p>
+          <span>—— 第二冊 p.2</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub">放榜成績，不是自我價值的判決</h3>
+    <div class="vs-cards">
+      <div class="vs-card bad">
+        <h5>定型思維</h5>
+        <ul>
+          <li>認為能力先天已定，不可改變</li>
+          <li>認為努力沒有用</li>
+          <li>面對困難：「我不會解決得到」</li>
+          <li>把成績與自我價值掛鈎</li>
+        </ul>
+      </div>
+      <div class="vs-card good">
+        <h5>成長思維</h5>
+        <ul>
+          <li>相信透過後天努力可以提升</li>
+          <li>相信努力能使自己進步</li>
+          <li>面對困難：「我從這件事學到甚麼？」</li>
+          <li>自我價值建基於自己的努力</li>
+        </ul>
+      </div>
+      <div class="vs-card tips">
+        <h5>三件可以立刻做的事</h5>
+        <ul>
+          <li>察覺消極念頭，問自己「繼續這樣想有甚麼利弊？」</li>
+          <li>把目光放在可以改變的地方，做一件具體的事</li>
+          <li>訂立具體可達成的目標，而不是「勝過所有人」</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">資料來源：衛生署學生健康服務，第一冊 p.22。</p>
+  </div>
+</section>
+
+<!-- ============ 關於 ============ -->
+<section class="sec about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <h2>關於這份指南</h2>
+        <p>這是一個把學友社《出路指南 2026》第一冊與第二冊重新編排的互動版本。原文的第三章至第五章（聯招課程新生入學成績、面試一覽、院校介紹）篇幅以百頁計，這裡只抽取了可直接用於決策的部分；其餘內容請對照原書頁碼查閱。</p>
+        <p>所有數字、日期、費用、入學要求均照原書抄錄，並在每節標示頁碼。原書資料以 2026 年 6 月為準；院校政策每年更新，報名前請以官方公布為準。</p>
+        <p class="fine">原書：學友社《出路指南 2026》第一冊（188 頁）、第二冊（154 頁）。本頁為非官方整理，用途為參考。</p>
+      </div>
+      <div class="src-list">
+        <h4>主要資料頁</h4>
+        <ul>
+          <li><b>第一冊</b> p.18–27 放榜前瞻</li>
+          <li><b>第一冊</b> p.37–53 聯招改選</li>
+          <li><b>第一冊</b> p.131–140 聯招以外學士</li>
+          <li><b>第二冊</b> p.3–12 副學位</li>
+          <li><b>第二冊</b> p.62–70 重讀與 DAE</li>
+          <li><b>第二冊</b> p.71–86 資歷架構與非本地課程</li>
+          <li><b>第二冊</b> p.88–108 留學</li>
+          <li><b>第二冊</b> p.113–142 職場</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div class="foot-brand"><span class="brand-mark">出</span><div><b>出路指南 2026</b><br><span>互動版 · 資料來源：學友社</span></div></div>
+    <div class="foot-links">
+      <a href="#map">出路地圖</a><a href="#jupas">聯招計分</a><a href="#beyond">聯招以外</a><a href="#abroad">留學</a><a href="#work">職場</a>
+    </div>
+    <button class="btn ghost sm" onclick="window.print()">列印 / 存為 PDF</button>
+  </div>
+</footer>
+
+<!-- 搜尋 -->
+<div class="search-modal" id="searchModal" hidden>
+  <div class="search-box">
+    <input type="search" id="searchInput" placeholder="搜尋章節、院校、目的地、計劃…" autocomplete="off">
+    <div class="search-results" id="searchResults"></div>
+    <div class="search-hint"><kbd>Esc</kbd> 關閉 · <kbd>↑</kbd><kbd>↓</kbd> 選擇 · <kbd>Enter</kbd> 前往</div>
+  </div>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
