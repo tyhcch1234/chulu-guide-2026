@@ -23,6 +23,7 @@
     <a href="#map">出路地圖</a>
     <a href="#timeline">時間軸</a>
     <a href="#jupas">聯招</a>
+    <a href="#database">資料庫</a>
     <a href="#beyond">聯招以外</a>
     <a href="#abroad">留學</a>
     <a href="#work">職場</a>
@@ -84,7 +85,7 @@
     <div class="hero-copy">
       <p class="eyebrow">學友社《出路指南 2026》· 第一冊 + 第二冊 · 互動整理</p>
       <h1>出路<span class="thin">指南</span> <em>2026</em></h1>
-      <p class="lead">由放榜前的心理準備，到聯招改選的每一步；由資助學位、自資學士、副學位、應用教育文憑，到留學與職場。<br class="br-lg">兩冊共 342 頁的資料，整理成一條你走得完的路。</p>
+      <p class="lead">由放榜前的心理準備，到聯招改選的每一步；由資助學位、自資學士、副學位、應用教育文憑，到留學與職場。<br class="br-lg">兩冊共 342 頁，777 個課程的入學成績，整理成一條你走得完、也查得到路。</p>
       <div class="hero-cta">
         <button class="btn solid lg" id="heroMe">輸入我的成績，看配對</button>
         <a class="btn ghost lg" href="#map">先看出路地圖</a>
@@ -95,7 +96,7 @@
       <div class="stat"><b>46,000</b><span>2026 日校考生</span></div>
       <div class="stat"><b>24,100</b><span>學士學額</span></div>
       <div class="stat"><b>28,600</b><span>副學位學額</span></div>
-      <div class="stat"><b>5,000</b><span>應用教育文憑學額</span></div>
+      <div class="stat"><b>777</b><span>可搜尋課程</span></div>
     </div>
   </div>
 </section>
@@ -253,11 +254,66 @@
   </div>
 </section>
 
+
+<!-- ============ 課程資料庫 ============ -->
+<section class="sec alt" id="database">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">04 · 資料庫</p>
+      <h2>777 個課程，逐個查</h2>
+      <p class="dek">第一冊的聯招課程入學成績（422 個課程）與第二冊的副學位入學成績（355 個課程），全部放進來。可搜尋、可篩選、可對照你的分數。<span class="src">第一冊 p.62–107；第二冊 p.32–55</span></p>
+    </div>
+
+    <div class="db-toolbar">
+      <div class="seg" id="dbTabs">
+        <button data-lv="all">全部 <em id="cAll"></em></button>
+        <button class="on" data-lv="degree">聯招學士 <em id="cDegree"></em></button>
+        <button data-lv="sub">副學位 <em id="cSub"></em></button>
+      </div>
+      <input type="search" id="dbSearch" placeholder="搜尋課程、院校、編號（如 JS1000）…" aria-label="搜尋課程">
+    </div>
+
+    <div class="db-filters">
+      <select id="dbInst" aria-label="院校"><option value="">所有院校</option></select>
+      <select id="dbCat" aria-label="範疇"><option value="">所有範疇</option></select>
+      <select id="dbSort" aria-label="排序">
+        <option value="inst" selected>院校排序</option>
+        <option value="score-asc">分數：低至高</option>
+        <option value="score-desc">分數：高至低</option>
+        <option value="ratio-desc">競爭：最激烈</option>
+        <option value="places-desc">學額：最多</option>
+        <option value="name">課程名稱</option>
+      </select>
+      <label class="switch"><input type="checkbox" id="dbMine"><span></span>只看我合資格</label>
+      <span class="db-count" id="dbCount"></span>
+    </div>
+
+    <div class="db-table-wrap">
+      <table class="db-table">
+        <thead>
+          <tr><th class="c-code">編號</th><th>課程</th><th class="c-inst">院校</th><th class="num c-place">學額</th><th class="num">分數</th><th class="num c-band">Band A</th><th class="num c-ratio">競爭</th><th class="c-more"></th></tr>
+        </thead>
+        <tbody id="dbBody"></tbody>
+      </table>
+    </div>
+    <div class="db-foot">
+      <button class="btn ghost" id="dbMore">載入更多</button>
+      <p class="fine">分數欄：聯招課程為 2025 年下四分位數（LQ），副學位為院校公布的平均總分；「競爭」為 Band A 報讀人數÷學額，原書數字與此不符者留空；「—」代表原書未提供。資料照錄原書，個別課程以院校公布為準。</p>
+    </div>
+  </div>
+</section>
+
+<aside class="drawer" id="drawer" hidden aria-label="課程詳情">
+  <div class="drawer-head"><h3 id="dTitle">課程</h3><button class="x" id="dClose" aria-label="關閉">✕</button></div>
+  <div class="drawer-body" id="dBody"></div>
+</aside>
+<div class="drawer-scrim" id="dScrim" hidden></div>
+
 <!-- ============ 聯招以外 ============ -->
 <section class="sec alt" id="beyond">
   <div class="wrap">
     <div class="sec-head">
-      <p class="kicker">04 · 聯招以外</p>
+      <p class="kicker">05 · 聯招以外</p>
       <h2>不經聯招，一樣有學位</h2>
       <p class="dek">資助學位以外，還有自資學士、副學位、應用教育文憑，以及資歷架構上的其他證書與文憑。這一段是「Plan B」的全部選項。</p>
     </div>
@@ -447,7 +503,7 @@
 <section class="sec" id="abroad">
   <div class="wrap">
     <div class="sec-head">
-      <p class="kicker">05 · 留學漫遊</p>
+      <p class="kicker">06 · 留學漫遊</p>
       <h2>十五個目的地</h2>
       <p class="dek">學費、生活費、語言門檻、申請截止——把十五個地區放在同一把尺上比較。<span class="src">第二冊 p.88–108</span></p>
     </div>
@@ -476,7 +532,7 @@
 <section class="sec alt" id="work">
   <div class="wrap">
     <div class="sec-head">
-      <p class="kicker">06 · 職場情報</p>
+      <p class="kicker">07 · 職場情報</p>
       <h2>不升學，也可以是選擇</h2>
       <p class="dek">八個熱門行業的入職門檻與薪酬，二十個培訓與見習計劃的津貼與對象。<span class="src">第二冊 p.113–142</span></p>
     </div>
@@ -498,7 +554,7 @@
 <section class="sec" id="prepare">
   <div class="wrap">
     <div class="sec-head">
-      <p class="kicker">07 · 放榜日</p>
+      <p class="kicker">08 · 放榜日</p>
       <h2>清單、熱線、與一個 Plan B</h2>
       <p class="dek">放榜前一晚要放進袋的東西、當日要打的電話、以及無論結果如何都用得着的一句話。<span class="src">第一冊 p.22–25</span></p>
     </div>
@@ -562,7 +618,8 @@
     <div class="about-grid">
       <div>
         <h2>關於這份指南</h2>
-        <p>這是一個把學友社《出路指南 2026》第一冊與第二冊重新編排的互動版本。原文的第三章至第五章（聯招課程新生入學成績、面試一覽、院校介紹）篇幅以百頁計，這裡只抽取了可直接用於決策的部分；其餘內容請對照原書頁碼查閱。</p>
+        <p>這是一個把學友社《出路指南 2026》第一冊與第二冊重新編排的互動版本。第一冊的聯招課程入學成績（422 個課程）與第二冊的副學位入學成績（355 個課程），已逐行收錄成可搜尋的資料庫；其餘章節則抽取可直接用於決策的部分，並在每節標示原書頁碼。</p>
+        <p>資料由人手逐頁抄錄，並以「每學額競爭人數 ≈ Band A 報讀人數 ÷ 學額」及分數次序（LQ ≤ 中位 ≤ UQ）作算術校對；不符者會在資料庫留空而非強行填補。仍可能有個別誤差，一切以原書及院校公布為準。</p>
         <p>所有數字、日期、費用、入學要求均照原書抄錄，並在每節標示頁碼。原書資料以 2026 年 6 月為準；院校政策每年更新，報名前請以官方公布為準。</p>
         <p class="fine">原書：學友社《出路指南 2026》第一冊（188 頁）、第二冊（154 頁）。本頁為非官方整理，用途為參考。</p>
       </div>
@@ -572,6 +629,8 @@
           <li><b>第一冊</b> p.18–27 放榜前瞻</li>
           <li><b>第一冊</b> p.37–53 聯招改選</li>
           <li><b>第一冊</b> p.131–140 聯招以外學士</li>
+          <li><b>第一冊</b> p.62–107 聯招課程成績（資料庫）</li>
+          <li><b>第二冊</b> p.32–55 副學位課程成績（資料庫）</li>
           <li><b>第二冊</b> p.3–12 副學位</li>
           <li><b>第二冊</b> p.62–70 重讀與 DAE</li>
           <li><b>第二冊</b> p.71–86 資歷架構與非本地課程</li>
@@ -605,6 +664,8 @@
 </div>
 
 <script src="assets/data.js"></script>
+<script src="assets/programmes.js"></script>
 <script src="assets/app.js"></script>
+<script src="assets/db.js"></script>
 </body>
 </html>
