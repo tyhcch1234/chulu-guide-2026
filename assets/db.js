@@ -19,6 +19,7 @@ function myBest5(levels){
   return pool.slice(0,5).reduce((a,b)=>a+b,0);
 }
 const hasMe = ['chi','eng','math','e1','e2'].every(k=>st[k]);
+const AVG=new Set(['東華學院','聖方濟各大學','香港恆生大學','香港樹仁大學','香港伍倫貢學院','香港珠海學院','香港高等教育科技學院（THEi）']);
 const scaleOf = inst => { const s=Object.values(G.scoring||{}).find(x=>x.nameTC===inst); return s?s.levels:null; };
 
 /* ---- state ---- */
@@ -41,6 +42,7 @@ function scoreOf(p){
 }
 function scoreLabel(p){
   if(p.lv==='degree'){
+    if(AVG.has(p.i) && num(p.m)!=null) return {v:p.m, tag:'平均'};
     if(num(p.l)!=null) return {v:p.l, tag:'LQ'};
     if(num(p.m)!=null) return {v:p.m, tag:'中位'};
     return null;
@@ -93,7 +95,7 @@ function render(){
       <td><span class="pname">${esc(p.n)}</span>${p.cat?`<span class="badge sub">${esc(p.cat)}</span>`:''}
         <div class="pmeta">${esc((p.mt||'').slice(0,46))}${(p.mt||'').length>46?'…':''}</div></td>
       <td class="c-inst">${esc(p.i||'')}</td>
-      <td class="num c-place">${p.p?fp(p.p):'—'}</td>
+      <td class="num c-place">${p.p?(p.g?'≈':'')+fp(p.p):'—'}</td>
       <td class="num"><span class="sc ${good?'low':''}">${sl?(sl.v!=null?fp(sl.v):esc(sl.tag)):'—'}</span>${sl&&sl.v!=null?`<div class="pmeta">${sl.tag}</div>`:''}</td>
       <td class="num c-band">${p.b?fp(p.b):'—'}</td>
       <td class="num c-ratio">${p.r?fp(p.r):'—'}</td>
